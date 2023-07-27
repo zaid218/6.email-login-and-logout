@@ -1,12 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
-const AuthContext = createContext({
-    isLoggedIn: false,
-    onLogout: () => { },
-    // not necessary but this allows VS Code and React to give suggestions
-    // as we type 'on', it will show the 'onLogout' as a suggestion
-    onLogin: (email, password) => { }
-});
+const AuthContext = createContext();
+export default AuthContext;
 
 export const AuthContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,7 +22,6 @@ export const AuthContextProvider = (props) => {
         localStorage.setItem('isLoggedIn', '1');
         setIsLoggedIn(true);
     };
-
     return (
         <AuthContext.Provider value={{
             isLoggedIn: isLoggedIn,
@@ -39,4 +33,3 @@ export const AuthContextProvider = (props) => {
     );
 };
 
-export default AuthContext;
